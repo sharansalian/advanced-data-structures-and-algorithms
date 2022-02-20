@@ -114,12 +114,26 @@ class LinkedList<T> {
         prev.next = null
         tail = prev
         return curr.value
+    }
 
+    fun removeAfter(node: Node<T>): T? {
+        val result = node.next?.value
+
+        if(node == tail){
+            tail = node
+        }
+
+        if(node.next != null){
+            size--
+        }
+
+        node.next = node.next?.next
+        return result
     }
 }
 
 fun main() {
-    "add, append, nodeAt, insert, pop & removeLast with fluent interface" example {
+    "add, append, nodeAt, insert, pop, removeLast, remove with fluent interface" example {
         val ll = LinkedList<Int>().apply {
             push(23)
             push(21)
@@ -137,5 +151,14 @@ fun main() {
         println(ll)
         val lastElm = ll.removeLast()
         println("The removed last element is $lastElm")
+        val removeAfterNodeIndex = 1
+        val nodeAt = ll.nodeAt(removeAfterNodeIndex)
+        println(ll)
+        ll.append(33).append(38)
+        println(ll)
+        println("The node at $removeAfterNodeIndex is ${nodeAt?.value}")
+        val removedNode = nodeAt?.let { ll.removeAfter(it) }
+        println(ll)
+        println("The removed node $removedNode")
     }
 }
