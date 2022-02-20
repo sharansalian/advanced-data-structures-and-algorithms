@@ -86,10 +86,40 @@ class LinkedList<T> {
 
         return result
     }
+
+    fun removeLast(): T? {
+
+        //1
+        val head = head ?: return null
+
+        //2
+        if (head.next == null) return pop()
+
+        //3
+        size--
+
+        //4
+        var prev = head
+        var curr = head
+
+        var next = curr.next
+
+        while (next != null){
+            prev = curr
+            curr = next
+            next = curr.next
+        }
+
+        //5
+        prev.next = null
+        tail = prev
+        return curr.value
+
+    }
 }
 
 fun main() {
-    "add, append, nodeAt, insert & pop with fluent interface" example {
+    "add, append, nodeAt, insert, pop & removeLast with fluent interface" example {
         val ll = LinkedList<Int>().apply {
             push(23)
             push(21)
@@ -105,5 +135,7 @@ fun main() {
         val poppedElement = ll.pop()
         println("The popped element is $poppedElement")
         println(ll)
+        val lastElm = ll.removeLast()
+        println("The removed last element is $lastElm")
     }
 }
