@@ -4,7 +4,7 @@ class LinkedList<T> {
     var tail: Node<T>? = null
     private var size = 0
 
-    fun isEmpty(): Boolean = size == 0
+    private fun isEmpty(): Boolean = size == 0
 
     override fun toString(): String {
         return if (isEmpty())
