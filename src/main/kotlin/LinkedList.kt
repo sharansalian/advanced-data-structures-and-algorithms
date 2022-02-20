@@ -56,10 +56,23 @@ class LinkedList<T> {
 
         return currentNode
     }
+
+    fun insert(value: T, afterNode: Node<T>): Node<T>? {
+        //1
+        if (tail == afterNode) {
+            append(value)
+            return tail
+        }
+
+        //2
+        val newNode = Node(value = value, next = afterNode.next)
+        afterNode.next = newNode
+        return newNode
+    }
 }
 
 fun main() {
-    "add & append with fluent interface" example {
+    "add, append, nodeAt & insert with fluent interface" example {
         val ll = LinkedList<Int>().apply {
             push(23)
             push(21)
@@ -67,8 +80,10 @@ fun main() {
             append(25)
         }
         println(ll)
-        val index = 6
+        val index = 3
         val node = ll.nodeAt(index)
         println("The node at $index is ${node?.value}")
+        node?.let { ll.insert(22, it) }
+        println(ll)
     }
 }
