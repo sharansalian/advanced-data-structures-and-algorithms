@@ -13,23 +13,47 @@ class LinkedList<T> {
             head.toString()
     }
 
-    fun push(value: T) {
-        head = Node(value = value, head)
+    /**
+     * head first insertion
+     */
+    fun push(value: T): LinkedList<T> {
+        head = Node(value = value, next = head)
         if (tail == null) {
             tail = head
         }
         size++
+        return this
+    }
+
+    /***
+     * tail-end insertion
+     */
+    fun append(value: T): LinkedList<T> {
+        //1
+        if (isEmpty()) {
+            push(value)
+            return this
+        }
+
+        //2
+        tail?.next = Node(value = value)
+
+        //3
+        tail = tail?.next
+
+        size++
+        return this
     }
 }
 
 fun main() {
-    "pushing in linked list" example {
-        val ll = LinkedList<Int>()
-        ll.push(3)
-        ll.push(2)
-        ll.push(1)
-
+    "add & append with fluent interface" example {
+        val ll = LinkedList<Int>().apply {
+            push(23)
+            push(21)
+            push(16)
+            append(25)
+        }
         println(ll)
-
     }
 }
