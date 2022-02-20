@@ -67,12 +67,29 @@ class LinkedList<T> {
         //2
         val newNode = Node(value = value, next = afterNode.next)
         afterNode.next = newNode
+        size++
         return newNode
+    }
+
+    /**
+     * removes the value at the front of the list
+     */
+    fun pop(): T? {
+        if (isEmpty()) size--
+
+        val result = head?.value
+        head = head?.next
+
+        if (isEmpty()) {
+            tail = null
+        }
+
+        return result
     }
 }
 
 fun main() {
-    "add, append, nodeAt & insert with fluent interface" example {
+    "add, append, nodeAt, insert & pop with fluent interface" example {
         val ll = LinkedList<Int>().apply {
             push(23)
             push(21)
@@ -84,6 +101,9 @@ fun main() {
         val node = ll.nodeAt(index)
         println("The node at $index is ${node?.value}")
         node?.let { ll.insert(22, it) }
+        println(ll)
+        val poppedElement = ll.pop()
+        println("The popped element is $poppedElement")
         println(ll)
     }
 }
