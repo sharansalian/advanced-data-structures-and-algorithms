@@ -44,6 +44,18 @@ class LinkedList<T> {
         size++
         return this
     }
+
+    fun nodeAt(index: Int): Node<T>? {
+        var currentNode = head
+        var currentIndex = 0
+
+        while (currentNode != null && currentIndex < index) {
+            currentNode = currentNode.next
+            currentIndex++
+        }
+
+        return currentNode
+    }
 }
 
 fun main() {
@@ -55,5 +67,8 @@ fun main() {
             append(25)
         }
         println(ll)
+        val index = 6
+        val node = ll.nodeAt(index)
+        println("The node at $index is ${node?.value}")
     }
 }
