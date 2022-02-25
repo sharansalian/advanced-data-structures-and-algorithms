@@ -233,4 +233,30 @@ fun main() {
         println(ll)
         println("The removed node $removedNode")
     }
+
+    "print in reverse" example {
+        val ll = LinkedList<Int>().apply {
+            add(3)
+            add(2)
+            add(1)
+            add(4)
+            add(5)
+        }
+        println(ll)
+        ll.printInReverse()
+    }
+}
+
+fun <T> LinkedList<T>.printInReverse(){
+    this.nodeAt(0)?.printInReverse()
+}
+
+fun <T> Node<T>.printInReverse(){
+    this.next?.printInReverse()
+    // 1
+    if(this.next != null) {
+        print(" -> ")
+    }
+    // 2
+    print(this.value.toString())
 }
