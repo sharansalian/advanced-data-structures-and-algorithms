@@ -37,6 +37,9 @@ fun main() {
     readOnlyRepo.getId(1)
     readOnlyRepo.getAll()
 
+    val writeRepo = WriteRepoImpl<Customer>()
+    writeRepo.save(Customer())
+
 }
 
 // Declaration site variance
@@ -44,4 +47,9 @@ interface ReadOnlyRepo<out T> {
     fun getId(id: Int): T
     fun getAll(): List<T>
 
+}
+
+interface WriteRepo<in T>{
+    fun save(obj: T)
+    fun saveAll(list: List<T>)
 }
