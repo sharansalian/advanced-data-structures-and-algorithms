@@ -1,5 +1,7 @@
 package adv_kotlin.generics
 
+import adv_kotlin.classes.Customer
+
 open class Person
 
 class Employee : Person()
@@ -13,7 +15,8 @@ fun operate(persons: Array<Person>): Array<Person> {
     return persons
 
 }
-fun operate(persons: List<Person>){
+
+fun operate(persons: List<Person>) {
 
 }
 
@@ -26,7 +29,19 @@ fun main() {
 
     operate(arrayOf(Person(), Person()))
 
-    val result = operate(List<Employee>(1) {Employee()})
+    operate(listOf<Employee>())
+    operate(listOf<Person>())
 
-    val x = 1
+    val readOnlyRepo = ReadOnlyRepoImpl<Customer>()
+
+    readOnlyRepo.getId(1)
+    readOnlyRepo.getAll()
+
+}
+
+// Declaration site variance
+interface ReadOnlyRepo<out T> {
+    fun getId(id: Int): T
+    fun getAll(): List<T>
+
 }
