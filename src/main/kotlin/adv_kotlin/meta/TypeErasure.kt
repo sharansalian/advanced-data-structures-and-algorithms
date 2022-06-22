@@ -11,3 +11,13 @@ fun main() {
 fun <T> printList(list: List<T>) {
 
 }
+
+inline fun <reified T> erased(input: List<Any>) {
+    if (input is T) {
+
+    }
+}
+
+inline fun <reified T> typeInfo() {
+    println(T::class)
+}
