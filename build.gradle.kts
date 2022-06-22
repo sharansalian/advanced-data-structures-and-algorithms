@@ -14,7 +14,9 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.0")
+    runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:1.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
+
 }
 
 tasks.test {
