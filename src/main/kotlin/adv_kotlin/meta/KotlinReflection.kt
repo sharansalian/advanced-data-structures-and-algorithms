@@ -1,7 +1,7 @@
 package adv_kotlin.meta
 
 import kotlin.reflect.KClass
-import kotlin.reflect.full.memberProperties
+//import kotlin.reflect.full.memberProperties
 
 fun getType(obj: KClass<*>) {
     println(obj.qualifiedName)
@@ -39,11 +39,11 @@ fun main() {
     val trans = Transaction(10, 20.0, "new value")
 
     //read the property value at run time
-    val nameProperty = Transaction::class.memberProperties.find { it.name == "id" }
+    /*val nameProperty = Transaction::class.memberProperties.find { it.name == "id" }
 
     val nameValue = nameProperty?.get(trans)
 
     println("Runtime value :$nameValue")
 
-    println(transaction.description)
+    println(transaction.description)*/
 }
