@@ -1,4 +1,4 @@
-package leetcode.hashing
+package leetcode.arrays_and_hashing
 
 
 fun main() {

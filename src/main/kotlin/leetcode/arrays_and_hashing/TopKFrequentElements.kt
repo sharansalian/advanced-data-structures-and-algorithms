@@ -1,4 +1,4 @@
-package leetcode.hashing
+package leetcode.arrays_and_hashing
 
 fun main() {
     println(topKFrequent(intArrayOf(1, 1, 1, 2, 2, 3), 2).contentToString())
