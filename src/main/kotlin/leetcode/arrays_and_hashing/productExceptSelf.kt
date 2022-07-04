@@ -2,23 +2,24 @@ package leetcode.arrays_and_hashing
 
 fun main() {
 
-    println(productExceptSelf(intArrayOf(0, 0)).contentToString())
+    println(productExceptSelf(intArrayOf(1, 2, 3, 4)).contentToString())
 }
 
 fun productExceptSelf(nums: IntArray): IntArray {
     val res = IntArray(nums.size)
-    val map = hashMapOf<Int, Int>()
 
+    var prefix = 1
     for (i in 0 until nums.size) {
-        map[i] = nums[i]
+        res[i] = prefix
+        prefix *= nums[i]
     }
 
-    for (i in 0 until nums.size) {
-        val others = map.filter { it.key != i }.map {
-            it.value
-        }.reduce { acc, i -> acc * i }
-        res[i] = others
+    var postfix = 1
+
+    for (i in nums.size - 1 downTo 0) {
+        res[i] *=  postfix
+        postfix *= nums[i]
     }
 
-    return res
+    return  res
 }
